@@ -1,2 +1,15 @@
 
 .vs/
+# Binaries
+bin/
+obj/
+
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
