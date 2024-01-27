@@ -1,6 +1,8 @@
-﻿namespace Api.Service
+﻿using Api.Models;
+
+namespace Api.Service
 {
-    public class ServiceProduit:IServiceProduits
+    public class ServiceProduit
     {
         // instancier ma base de données ici et apres je cré un constructeur qui me permet d'avoir accée à ma base de donnée
         MydataBase _dbContext;

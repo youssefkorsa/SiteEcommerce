@@ -2,11 +2,11 @@
 {
     public class Product
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-        double price { get; set; }
-        int QuantityStock {  get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double price { get; set; }
+        public int QuantityStock {  get; set; }
         public Product ()
         { 
 
