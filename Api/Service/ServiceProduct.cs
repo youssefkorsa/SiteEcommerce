@@ -1,13 +1,15 @@
-﻿namespace Api.Service
+﻿using Api.Models;
+
+namespace Api.Service
 {
-    public class ServiceProduit:IServiceProduits
+    public class ServiceProduct
     {
         // instancier ma base de données ici et apres je cré un constructeur qui me permet d'avoir accée à ma base de donnée
         MydataBase _dbContext;
 
         // je crée le constructeur qui me permet d'embarquer ma base de données a chaque fois que j'appel mon service
 
-        public ServiceProduit(MydataBase dbContext)
+        public ServiceProduct(MydataBase dbContext)
         {
             _dbContext = dbContext;
         }
@@ -19,12 +21,24 @@
             return products;
         }
         // Ajouter un produit dans la liste 
-        public Product Addproduct()
+        public Product Addproduct(Product product)
         {
-            var producttoAdd = Addproduct();
+            var producttoAdd = Addproduct(product);
             _dbContext.Products.Add(producttoAdd);
             _dbContext.SaveChanges();
             return producttoAdd;
         }
+        // Modifier un produit dans la base de données
+        public Product EditProduct(int id, Product product)
+        {
+            var producttoEdit = _dbContext.Products.Find(id);
+            producttoEdit = product;
+            _dbContext.SaveChanges();
+
+            return product;
+        }
+
     }
+
 }
+
