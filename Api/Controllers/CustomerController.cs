@@ -2,7 +2,7 @@
 using Api.Service;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controlers
+namespace Api.Controllers
 {
     [Route("api/Customers")]
     [ApiController]
