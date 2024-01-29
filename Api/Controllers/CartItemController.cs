@@ -27,5 +27,15 @@ namespace Api.Controllers
             return cartItemList;
         }
 
+        //Afficher la liste de mes panier 
+        public List<CartItem> GetPurchasesById(int IdClient)
+        {
+            {
+                CartItemService cartItemService = new CartItemService(new MydataBase());
+                var listCartItem = cartItemService.GetPurchasesById(IdClient);
+                return listCartItem;
+            }
+        }
+
     }
 }

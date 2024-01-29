@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace Api.Models
 {
@@ -24,5 +25,7 @@ namespace Api.Models
             var purchaseList =  _context.Purchases.Include(s=>s.product).ToList();
             return purchaseList;
         }
+
+       
     }
 }

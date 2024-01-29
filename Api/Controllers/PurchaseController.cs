@@ -27,6 +27,7 @@ namespace Api.Controllers
             var purchaseList = purchaseService.GetPurchases();
             return purchaseList;
         }
+
         
     }
 }

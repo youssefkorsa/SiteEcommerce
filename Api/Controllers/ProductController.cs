@@ -30,13 +30,30 @@ namespace Api.Controllers
         }
 
         // Modifier un produit
-        [Route("Edit")]
+        [Route("Edit/{id}")]
         [HttpGet]
         public Product EditProduct(int id, Product product)
         {
             ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
             var productToEdit = serviceProduct.EditProduct(id, product);
             return productToEdit;
+        }
+
+        // Supprimer un produit 
+        [Route("Delet/{id}")]
+        [HttpPost]
+        public void DeleteProduct(int id)
+        {
+            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            serviceProduct.DelectProduct(id);
+        }
+
+        // Quantité de produit a éditer dans la base de données
+        [Route("Edite/{id}/Quantity")]
+        public void EditQuantityProduct(int id, int quantity)
+        {
+            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            serviceProduct.EditQuantityProduct(id, quantity);
         }
 
 
