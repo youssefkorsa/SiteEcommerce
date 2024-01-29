@@ -6,8 +6,11 @@ namespace Api.Models
     {
         public int Id { get; set; }
         public Product product { get; set; }
-        int QuantityPurchase { get; set; }
+        public int QuantityPurchase { get; set; }
 
-        public Purchase() { }
+        public Purchase()
+        { 
+
+        }
     }
 }
