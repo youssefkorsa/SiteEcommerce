@@ -29,6 +29,16 @@ namespace Api.Service
             return producttoAdd;
         }
         // Modifier un produit dans la base de données
-         
+        public Product EditProduct(int id, Product product)
+        {
+            var producttoEdit = _dbContext.Products.Find(id);
+            producttoEdit = product;
+            _dbContext.SaveChanges();
+
+            return product;
+        }
+
     }
+
 }
+

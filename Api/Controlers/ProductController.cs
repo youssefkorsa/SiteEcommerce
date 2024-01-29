@@ -13,15 +13,15 @@ namespace Api.Controlers
         // Affichage du liste des produit depuis la base de données
         [Route("")]
         [HttpGet]
-        public List<Product> GetProducts() 
-        { 
+        public List<Product> GetProducts()
+        {
             ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
             var products = serviceProduct.GetProducts();
-            return products; 
+            return products;
         }
         // Création d'un produit dans notre base de données 
-        [Route("AddProduct")]
-        [HttpGet]
+        [Route("Add")]
+        [HttpPost]
         public Product AddProduct(Product product)
         {
             ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
@@ -29,7 +29,17 @@ namespace Api.Controlers
             return producttoAdd;
         }
 
+        // Modifier un produit
+        [Route("Edit")]
+        [HttpGet]
+        public Product EditProduct(int id, Product product)
+        {
+            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            var productToEdit = serviceProduct.EditProduct(id, product);
+            return productToEdit;
+        }
 
-        
+
+
     }
 }
