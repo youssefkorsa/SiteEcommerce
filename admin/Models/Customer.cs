@@ -1,11 +1,11 @@
-﻿namespace Api.Models
+﻿namespace admin.Models
 {
     public class Customer
     {
-        int Id { get; set; }
-        string FirstName { get; set; }
-        string LastName { get; set; }
+       public  int Id { get; set; }
+       public  string FirstName { get; set; }
+       public string LastName { get; set; }
 
-        public Customer() { }
+       public Customer() { }
     }
 }

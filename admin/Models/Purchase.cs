@@ -1,13 +1,16 @@
 ﻿using admin.Models;
 
-namespace Api.Models
+namespace admin.Models
 {
     public class Purchase
     {
         public int Id { get; set; }
         public Product product { get; set; }
-        int QuantityPurchase { get; set; }
+        public int QuantityPurchase { get; set; }
 
-        public Purchase() { }
+        public Purchase()
+        { 
+
+        }
     }
 }
