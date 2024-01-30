@@ -11,14 +11,14 @@ namespace Api.Controllers
     public class ProductController : ControllerBase
     {
         // Trouver un produit avec son Identifiant Id
-       /* [Route("{id}")]
+        [Route("{id}")]
         [HttpGet]
         public Product GetProduct(int id)
         {
             ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
             var productId = serviceProduct.GetProduct(id);
             return productId;
-        }*/
+        }
         // Affichage du liste des produit depuis la base de données
         [Route("")]
         [HttpGet]
