@@ -80,11 +80,11 @@ namespace Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<int>("QuantityStock")
                         .HasColumnType("int");
-
-                    b.Property<double>("price")
-                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

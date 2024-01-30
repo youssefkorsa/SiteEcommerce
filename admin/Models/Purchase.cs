@@ -1,6 +1,6 @@
 ﻿using admin.Models;
 
-namespace Api.Models
+namespace admin.Models
 {
     public class Purchase
     {

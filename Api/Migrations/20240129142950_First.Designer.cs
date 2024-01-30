@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(MydataBase))]
-    [Migration("20240127084406_First_Migrtin")]
-    partial class First_Migrtin
+    [Migration("20240129142950_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,11 +83,11 @@ namespace Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<int>("QuantityStock")
                         .HasColumnType("int");
-
-                    b.Property<double>("price")
-                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

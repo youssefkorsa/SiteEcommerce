@@ -1,27 +1,27 @@
 ﻿using System.Text.Json;
 using System.Text;
-using Api.Models;
+using admin.Models;
 
 namespace admin.Repositories
 {
     public class PurchaseRepository
     {
   
-            private string _baseUrl = "http://localhost:2440/api";
-            public Customer GetCustomer(int id)
+            private string _baseUrl = "http://localhost:2440/api/Purchase";
+            public Purchase GetPurchase(int id)
             {
-                string url = $"{_baseUrl}/customers/{id}";
+                string url = $"{_baseUrl}/{id}";
                 HttpClient client = new HttpClient();
                 var response = client.GetAsync(url).Result;
-                var customerJson = response.Content.ReadAsStringAsync().Result;
-                Customer customer = JsonSerializer.Deserialize<Customer>(customerJson);
+                var purchaseJson = response.Content.ReadAsStringAsync().Result;
+                Purchase purchase = JsonSerializer.Deserialize<Purchase>(purchaseJson);
 
-                return customer;
+                return purchase;
             }
             //  Ajouter un Achat 
             public Purchase AddPurchase(Purchase purchaseToAdd)
             {
-                string url = $"{_baseUrl}/purchase/Add";
+                string url = $"{_baseUrl}/Add";
                 HttpClient client = new HttpClient();
                 var purchaseJson = JsonSerializer.Serialize(purchaseToAdd);
                 var content = new StringContent(purchaseJson, Encoding.UTF8, "application/json");
@@ -36,7 +36,7 @@ namespace admin.Repositories
             // Afficher la liste des ventes
             public List<Purchase> GetPurchases()
             {
-                string url = $"{_baseUrl}/purchases";
+                string url = $"{_baseUrl}";
                 HttpClient client = new HttpClient();
                 var reponse = client.GetAsync(url).Result;
                 var purchaseJson = reponse.Content.ReadAsStringAsync().Result;

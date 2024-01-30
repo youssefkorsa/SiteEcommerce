@@ -7,11 +7,11 @@ namespace admin.Repository
 {
     public class ProductRepository
     {
-        private string _baseUrl = "http://localhost:2440/api";
+        private string _baseUrl = "http://localhost:2440/api/Products";
 
         public Product GetProduct(int id)
         {
-            string url = $"{_baseUrl}/products/{id}";
+            string url = $"{_baseUrl}/{id}";
             HttpClient client = new HttpClient();
             var response = client.GetAsync(url).Result;
             var productJson = response.Content.ReadAsStringAsync().Result;
@@ -19,9 +19,10 @@ namespace admin.Repository
 
             return product;
         }
+        //Ajout d'un produit 
         public Product AddProduct(Product productToAdd)
         {
-            string url = $"{_baseUrl}/products/Add";
+            string url = $"{_baseUrl}/Add";
             HttpClient client = new HttpClient();
             var productJson = JsonSerializer.Serialize(productToAdd);
             var content = new StringContent(productJson, Encoding.UTF8, "application/json");
@@ -36,7 +37,7 @@ namespace admin.Repository
         // Afficher la liste des produits
         public List<Product> GetProducts()
         {
-            string url = $"{_baseUrl}/products";
+            string url = $"{_baseUrl}";
             HttpClient client = new HttpClient();
             var reponse = client.GetAsync(url).Result;
             var productJson = reponse.Content.ReadAsStringAsync().Result;
@@ -51,7 +52,7 @@ namespace admin.Repository
         public void DeleteProduct(int Id) 
         {
 
-            string url = $"{_baseUrl}/products/{Id}";
+            string url = $"{_baseUrl}/Delete/{Id}";
             HttpClient client = new HttpClient();
 
             // Envoyer une requête HTTP DELETE à l'API
@@ -62,7 +63,7 @@ namespace admin.Repository
         //Editer un  produit 
         public  Product EditProduct(int Id, Product productToEdit)
         {
-            string url = $"{_baseUrl}/products/Edit{Id}";
+            string url = $"{_baseUrl}/Edit/{Id}";
             HttpClient client = new HttpClient();
 
 
@@ -77,8 +78,19 @@ namespace admin.Repository
              var updatedProductJson = response.Content.ReadAsStringAsync().Result;
              Product updatedProduct = JsonSerializer.Deserialize<Product>(updatedProductJson);
 
-             return updatedProduct;
-   
+             return updatedProduct; 
+        }
+
+        // Editer la quantité d'un produit dans la base de donées
+        public void EditQuantityProduct(int Id, int quantity)
+        {
+            string url = $"{_baseUrl}/Edit/{Id}/Quantity";
+            HttpClient client = new HttpClient();
+            var QuantityJson = JsonSerializer.Serialize(quantity);
+            var content = new StringContent(QuantityJson, Encoding.UTF8, "application/json");
+            var response = client.PostAsync(url, content).Result;
+
+
         }
     }
 
