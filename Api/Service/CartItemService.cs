@@ -22,5 +22,12 @@
             var cartItemList= _context.CartItems.ToList();
             return cartItemList;
         }
+
+        // Afficher la liste des Panier 
+        public List<CartItem> GetPurchasesById(int IdClient)
+        {
+            var listCartItemId = _context.CartItems.Where(p => p.Id == IdClient).ToList();
+            return listCartItemId;
+        }
     }
 }

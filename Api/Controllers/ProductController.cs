@@ -10,6 +10,15 @@ namespace Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        // Trouver un produit avec son Identifiant Id
+        [Route("{id}")]
+        [HttpGet]
+        public Product GetProduct(int id)
+        {
+            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            var productId = serviceProduct.GetProduct(id);
+            return productId;
+        }
         // Affichage du liste des produit depuis la base de données
         [Route("")]
         [HttpGet]
@@ -30,13 +39,31 @@ namespace Api.Controllers
         }
 
         // Modifier un produit
-        [Route("Edit")]
-        [HttpGet]
+        [Route("Edit/{id}")]
+        [HttpPut]
         public Product EditProduct(int id, Product product)
         {
             ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
             var productToEdit = serviceProduct.EditProduct(id, product);
             return productToEdit;
+        }
+
+        // Supprimer un produit 
+        [Route("Delete/{id}")]
+        [HttpDelete]
+        public void DeleteProduct(int id)
+        {
+            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            serviceProduct.DelectProduct(id);
+        }
+
+        // Quantité de produit a éditer dans la base de données
+        [Route("Edit/{id}/Quantity")]
+        [HttpPost]
+        public void EditQuantityProduct(int id, int quantity)
+        {
+            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            serviceProduct.EditQuantityProduct(id, quantity);
         }
 
 

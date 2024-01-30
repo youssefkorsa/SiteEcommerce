@@ -14,6 +14,12 @@ namespace Api.Service
             _dbContext = dbContext;
         }
 
+        // Trouver un prduit dans la base données a partir de son Id
+        public Product GetProduct(int id)
+        {
+            return _dbContext.Products.FirstOrDefault(p => p.Id == id);
+        }
+
         // je veux afficher ma liste de produit dans ma page client
         public List<Product> GetProducts()
         {
@@ -32,10 +38,34 @@ namespace Api.Service
         public Product EditProduct(int id, Product product)
         {
             var producttoEdit = _dbContext.Products.Find(id);
-            producttoEdit = product;
+            producttoEdit.Name = product.Name;
+            producttoEdit.Description = product.Description;
+            producttoEdit.Price = product.Price;
+            producttoEdit.Category = product.Category;
+    
             _dbContext.SaveChanges();
 
             return product;
+        }
+
+        // Supprimer un produit
+        public void  DelectProduct(int id)
+        {
+             var idProduct = _dbContext.Products.Find(id);
+            _dbContext.Remove(idProduct);
+            _dbContext.SaveChanges();      
+        }
+
+        // Editer la quantité du produit dans la base de données
+        public int EditQuantityProduct(int id, int quantity)
+        {
+            var productToEdit = _dbContext.Products.Find(id);
+            var newQuantity = productToEdit.QuantityStock - quantity;
+            productToEdit.QuantityStock = newQuantity;
+            _dbContext.SaveChanges();
+
+            return newQuantity;
+                
         }
 
     }
