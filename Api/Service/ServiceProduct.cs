@@ -14,6 +14,12 @@ namespace Api.Service
             _dbContext = dbContext;
         }
 
+        // Trouver un prduit dans la base données a partir de son Id
+        public Product GetProduct(int id)
+        {
+            return _dbContext.Products.FirstOrDefault(p => p.Id == id);
+        }
+
         // je veux afficher ma liste de produit dans ma page client
         public List<Product> GetProducts()
         {

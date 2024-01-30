@@ -28,7 +28,9 @@ namespace Api.Controllers
         }
 
         //Afficher la liste de mes panier 
-        public List<CartItem> GetPurchasesById(int IdClient)
+        [Route("{IdClient}/List")]
+        [HttpGet]
+        public List<CartItem> GetCartItemsById(int IdClient)
         {
             {
                 CartItemService cartItemService = new CartItemService(new MydataBase());
