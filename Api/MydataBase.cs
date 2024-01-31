@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 namespace Api
 {
-    public class MydataBase :DbContext
+    public class MydataBase : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // on va lui donner les information de connection de notre base de donne
-            optionsBuilder.UseSqlServer("server=LAPTOP-68O0BOM7\\SQLEXPRESS;Database=AdminBaseData;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("server=🦁🦁🦁\\SQLEXPRESS;Database=DBEcommerce;Trusted_Connection=True;TrustServerCertificate=True;");
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Purchase>  Purchases { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
 
     }
