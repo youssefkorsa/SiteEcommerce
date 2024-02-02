@@ -7,7 +7,7 @@ namespace admin.Repository
 {
     public class ProductRepository
     {
-        private string _baseUrl = "http://localhost:2440/api/Products";
+        private string _baseUrl = "http://localhost:5250/api/Products";
 
         public Product GetProduct(int id)
         {
@@ -31,8 +31,9 @@ namespace admin.Repository
 
             var newProductJson = response.Content.ReadAsStringAsync().Result;
             Product newProduct = JsonSerializer.Deserialize<Product>(newProductJson);
+            
 
-            return newProduct;
+            return productToAdd;
         }
         // Afficher la liste des produits
         public List<Product> GetProducts()

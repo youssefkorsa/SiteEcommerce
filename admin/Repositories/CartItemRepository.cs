@@ -6,7 +6,7 @@ namespace admin.Repositories
 {
     public class CartItemRepository
     {
-        private string _baseUrl = "http://localhost:2440/api/CartItem";
+        private string _baseUrl = "http://localhost:5250/api/CartItems";
 
 
 

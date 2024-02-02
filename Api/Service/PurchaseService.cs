@@ -22,7 +22,7 @@ namespace Api.Models
         // la liste a afficher en cas de besoin
         public List<Purchase> GetPurchases()
         {
-            var purchaseList =  _context.Purchases.Include(s=>s.product).ToList();
+            var purchaseList =  _context.Purchases.Include(s=>s.Product).ToList();
             return purchaseList;
         }
 

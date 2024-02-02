@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(MydataBase))]
-    [Migration("20240129142950_First")]
-    partial class First
+    [Migration("20240202130114_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -53,6 +53,9 @@ namespace Api.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -75,7 +78,15 @@ namespace Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -105,17 +116,20 @@ namespace Api.Migrations
                     b.Property<int?>("CartItemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuantityPurchase")
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("productId")
+                    b.Property<int>("QuantityPurchase")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CartItemId");
 
-                    b.HasIndex("productId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Purchases");
                 });
@@ -124,9 +138,7 @@ namespace Api.Migrations
                 {
                     b.HasOne("Api.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
                 });
@@ -134,21 +146,21 @@ namespace Api.Migrations
             modelBuilder.Entity("Api.Models.Purchase", b =>
                 {
                     b.HasOne("Api.Models.CartItem", null)
-                        .WithMany("Purchase")
+                        .WithMany("Purchases")
                         .HasForeignKey("CartItemId");
 
-                    b.HasOne("Api.Models.Product", "product")
+                    b.HasOne("Api.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("productId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("product");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Api.Models.CartItem", b =>
                 {
-                    b.Navigation("Purchase");
+                    b.Navigation("Purchases");
                 });
 #pragma warning restore 612, 618
         }

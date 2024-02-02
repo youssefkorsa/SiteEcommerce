@@ -12,6 +12,7 @@
         //Ajout d'un customer 
         public Customer AddCustomer(Customer customer)
         {
+            customer.CreatedDate = DateTime.Now;
             _context.Customers.Add(customer);
             _context.SaveChanges();
             return customer;

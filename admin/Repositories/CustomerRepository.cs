@@ -1,12 +1,13 @@
 ﻿using System.Text;
 using System.Text.Json;
 using admin.Models;
+using static System.Net.WebRequestMethods;
 
 namespace admin.Repositories
 {
     public class CustomerRepository
     {
-        private string _baseUrl = "http://localhost:2440/api";
+        private string _baseUrl = "http://localhost:5250/api";
         public Customer GetCustomer(int id)
         {
             string url = $"{_baseUrl}/customers/{id}";

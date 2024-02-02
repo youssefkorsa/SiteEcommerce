@@ -29,10 +29,10 @@ namespace Api.Service
         // Ajouter un produit dans la liste 
         public Product Addproduct(Product product)
         {
-            var producttoAdd = Addproduct(product);
-            _dbContext.Products.Add(producttoAdd);
+
+            _dbContext.Products.Add(product);
             _dbContext.SaveChanges();
-            return producttoAdd;
+            return product;
         }
         // Modifier un produit dans la base de données
         public Product EditProduct(int id, Product product)

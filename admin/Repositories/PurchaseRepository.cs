@@ -7,7 +7,7 @@ namespace admin.Repositories
     public class PurchaseRepository
     {
   
-            private string _baseUrl = "http://localhost:2440/api/Purchase";
+            private string _baseUrl = "http://localhost:5250/api/Purchases";
             public Purchase GetPurchase(int id)
             {
                 string url = $"{_baseUrl}/{id}";
