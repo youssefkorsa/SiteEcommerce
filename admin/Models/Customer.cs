@@ -1,11 +1,22 @@
-﻿namespace admin.Models
+﻿using System.Text.Json.Serialization;
+
+namespace admin.Models
 {
     public class Customer
     {
+        [JsonPropertyName("id")]
        public  int Id { get; set; }
-       public  string FirstName { get; set; }
-       public string LastName { get; set; }
+        [JsonPropertyName("firstName")]
+        public  string FirstName { get; set; }
+        [JsonPropertyName("lastName")]
+        public string LastName { get; set; }
+        
+        [JsonPropertyName("createdDate")]
+        public DateTime CreatedDate { get; set; }
 
-       public Customer() { }
+        public Customer(string firstName,string lastName) { 
+        FirstName = firstName;
+        LastName = lastName;
+        }
     }
 }

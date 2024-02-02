@@ -1,4 +1,5 @@
-﻿<div class="container header-container">
+﻿@model List<Purchase>
+<div class="container header-container">
     <section id="header">
 
         <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
@@ -28,22 +29,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><a href=""><i class="fa fa-times fa-lg"></i></a></td>
-                <td><img src="ProductsImages/f1.jpg" alt=""></td>
-                <td>Men's fashion T-shirt</td>
-                <td><span class="price">49</span>$</td>
-                <td><input class="Quantity" type="number" value="1" min="1"></td>
-                <td><span class="totalspan"></span></td>
-            </tr>
-            <tr>
-                <td><a href=""><i class="fa fa-times fa-lg"></i></a></td>
-                <td><img src="ProductsImages/f1.jpg" alt=""></td>
-                <td>Men's fashion T-shirt</td>
-                <td><span class="price">49</span>$</td>
-                <td><input class="Quantity" type="number" value="1" min="1"></td>
-                <td><span class="totalspan"></span></td>
-            </tr>
+            @foreach(var purchase in Model)
+            {
+                <tr>
+                    <td><a asp-controller="Home" asp-action="DeletePurchase" asp-route-id="@purchase.Id"><i class="fa fa-times fa-lg"></i></a></td>
+                    <td><img src="@purchase.Product.ImageURL" alt=""></td>
+                    <td>@purchase.Product.Name</td>
+                    <td><span class="price">@purchase.Product.Price</span>$</td>
+                    <td><input class="Quantity" type="number" value="@purchase.QuantityPurchase" min="1"></td>
+                    <td><span class="totalspan"></span></td>
+                </tr>
+                
+            }
+            
         </tbody>
     </table>
 
@@ -66,7 +64,7 @@
                 <td><strong id="TotalCart2"></strong></td>
             </tr>
         </table>
-        <button>Proced to Checkout</button>
+        <button><a style="text-decoration:none;color:white" asp-controller="Home" asp-action="Checkout">Proced to Checkout</a></button>
     </div>
 </div>
 
@@ -75,7 +73,7 @@
         <div class="row">
             <div class="column">
                 <img class="LogoShop" src="Images/LogoShopWhiteBG.png" alt="">
-                <p>Lorem ipsum dolor sit amet consectet</p>
+                <p>Fashion Meets Individuality!</p>
             </div>
             <div class="column ">
                 <h4>Contact</h4>

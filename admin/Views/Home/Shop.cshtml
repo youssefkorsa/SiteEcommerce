@@ -1,4 +1,5 @@
-﻿<div class="container header-container">
+﻿@model List<Product>
+<div class="container header-container">
     <section id="header">
 
         <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
@@ -25,107 +26,31 @@
 
 <div class="products">
     <section class="productsSection">
-        <div onclick="location.href='product.html'" class="product">
-            <img src="./ProductsImages/f1.jpg" alt="">
-            <div class="description">
-                <span>Adidas</span>
-                <h5>T-shirt</h5>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+        @foreach(Product product in Model)
+        {
+            <a style="text-decoration:none" asp-controller="Home" asp-action="ProductDetails" asp-route-id="@product.Id">
+                <div class="product">
+                    <img src="@product.ImageURL" alt="">
+                    <div class="description">
+                        <span>@product.Category</span>
+                        <h5>@product.Name</h5>
+                        <div class="star">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
 
+                        </div>
+                    </div>
+                    <div class="buy">
+                        <h4><span>@product.Price</span>$</h4>
+                        <a asp-controller="Home" asp-action="Cart" asp-route-id="@product.Id" class="cart"><i class="fa fa-cart-arrow-down"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="buy">
-                <h4>49$</h4>
-                <a href="#" class="cart"><i class="fa fa-cart-arrow-down"></i></a>
-            </div>
-        </div>
-
-        <div onclick="location.href='product.html'" class="product">
-            <img src="./ProductsImages/f1.jpg" alt="">
-            <div class="description">
-                <span>Adidas</span>
-                <h5>T-shirt</h5>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-
-                </div>
-            </div>
-            <div class="buy">
-                <h4>49$</h4>
-                <a href="#" class="cart"><i class="fa fa-cart-arrow-down"></i></a>
-            </div>
-        </div>
-
-        <div onclick="location.href='product.html'" class="product">
-            <img src="./ProductsImages/f1.jpg" alt="">
-            <div class="description">
-                <span>Adidas</span>
-                <h5>T-shirt</h5>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-
-                </div>
-            </div>
-            <div class="buy">
-                <h4>49$</h4>
-                <a href="#" class="cart"><i class="fa fa-cart-arrow-down"></i></a>
-            </div>
-        </div>
-
-        <div onclick="location.href='product.html'" class="product">
-            <img src="./ProductsImages/f1.jpg" alt="">
-            <div class="description">
-                <span>Adidas</span>
-                <h5>T-shirt</h5>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-
-                </div>
-            </div>
-            <div class="buy">
-                <h4>49$</h4>
-                <a href="#" class="cart"><i class="fa fa-cart-arrow-down"></i></a>
-            </div>
-        </div>
-
-        <div onclick="location.href='product.html'" class="product">
-            <img src="./ProductsImages/f1.jpg" alt="">
-            <div class="description">
-                <span>Adidas</span>
-                <h5>T-shirt</h5>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-
-                </div>
-            </div>
-            <div class="buy">
-                <h4>49$</h4>
-                <a href="#" class="cart"><i class="fa fa-cart-arrow-down"></i></a>
-            </div>
-        </div>
-
-
+            </a>
+        }
+       
     </section>
 </div>
 
@@ -147,7 +72,7 @@
         <div class="row">
             <div class="column">
                 <img class="LogoShop" src="Images/LogoShopWhiteBG.png" alt="">
-                <p>Lorem ipsum dolor sit amet consectet</p>
+                <p>Fashion Meets Individuality!</p>
             </div>
             <div class="column ">
                 <h4>Contact</h4>

@@ -987,10 +987,36 @@ footer i {
         outline: none;
         width: 80%;
         resize: none;
+        
     }
 
-/***************** ListCustomers ************************/
-#ListCustomers {
+    .inputAddImage input[type="file"] {
+    display: none;
+    }
+
+.UserFormSectionADDPro .inputAddImage {
+    height: 3.125rem; 
+    display:block;
+    text-align:center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    padding: 15px 25px;
+    border: black 1px solid;
+    outline: none;
+    cursor: pointer;
+    background-color: #088178;
+    border: #088178 1px solid;
+    width: 30%;
+    margin-top: 1.25em;
+}
+
+    .UserFormSectionADDPro  input[type="file"]
+    {
+        display:none;
+    }
+        /***************** ListCustomers ************************/
+        #ListCustomers {
     min-height: 80vh;
     margin-bottom: 40px;
 }

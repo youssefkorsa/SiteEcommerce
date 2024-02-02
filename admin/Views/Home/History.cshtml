@@ -1,4 +1,9 @@
-﻿<div class="container header-container">
+﻿@model List<Purchase>
+@{
+    int i = 0;
+}
+
+<div class="container header-container">
     <section id="header">
 
         <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
@@ -38,14 +43,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><img src="ProductsImages/f1.jpg" alt=""></td>
-                <td>Men's fashion T-shirt</td>
-                <td>49$</td>
-                <td>1</td>
-                <td>49$</td>
-                <td>Saturday, 27 January 2024</td>
-            </tr>
+
+           
+            @foreach (Purchase purchase in Model)
+            {
+                    <tr>
+                        <td><img src="@purchase.Product.ImageURL" alt=""></td>
+                        <td>@purchase.Product.Name</td>
+                        <td>@purchase.Product.Price $</td>
+                        <td>@purchase.QuantityPurchase</td>
+                        <td>@ViewBag.Total[i] $</td>
+                        <td>@purchase.Date </td>
+                </tr>
+                i++;
+            }
+
+
+            
         </tbody>
     </table>
 
@@ -58,7 +72,7 @@
         <div class="row">
             <div class="column">
                 <img class="LogoShop" src="Images/LogoShopWhiteBG.png" alt="">
-                <p>Lorem ipsum dolor sit amet consectet</p>
+                <p>Fashion Meets Individuality!</p>
             </div>
             <div class="column ">
                 <h4>Contact</h4>

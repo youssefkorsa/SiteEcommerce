@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ProductImages\" />
+    <Folder Include="wwwroot\NewFolder\" />
+    <Folder Include="wwwroot\ProductImages\" />
+  </ItemGroup>
+
 </Project>

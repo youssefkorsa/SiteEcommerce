@@ -1,12 +1,13 @@
-﻿<div class="container header-container">
+﻿@model Product
+<div class="container header-container">
     <section id="header">
 
         <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a  asp-controller="Home" asp-action="Shop">Shop</a></li>
-                <li><a class="active">About</a></li>
+                <li><a class="active">Shop</a></li>
+                <li><a asp-controller="Home" asp-action="About">About</a></li>
                 <li><a asp-controller="Home" asp-action="History">History</a></li>
                 <li><a asp-controller="Home" asp-action="User"><i class="fa fa-user fa-lg"></i></a></li>
                 <li><a asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
@@ -16,24 +17,50 @@
     </section>
 </div>
 
-<div class="MainContainerAbout">
-    <section class="mainSectionAbout">
-        <h2>Trade value deals </h2>
-    </section>
+<div class="productDetails">
+    <div class="productImage">
+        <img src="@Model.ImageURL" alt="">
+    </div>
+    <div class="productDetail">
+        <h6>@Model.Name</h6>
+        <h4>@Model.Category</h4>
+        <h2>@Model.Price $</h2>
+        <select>
+            <option>Select size</option>
+            <option>S </option>
+            <option>M </option>
+            <option>L </option>
+            <option>XL </option>
+            <option>XXL </option>
+            <option>XXXL </option>
+        </select>
+        <form asp-controller="Home" asp-action="CartPost" >
+            <input style="display:none" name="Id" value="@Model.Id"/>
+            <input name="Quantity" type="number" value="1" min="1">
+            <button>Add to cart</button>
+        </form>
+        <h4>Products details</h4>
+        <span>@Model.Description</span>
+
+    </div>
 </div>
 
 
-<section id="aboutSection">
-    <img id="aboutImage" src="Images/a6.jpg" alt="">
-    <div class="AboutText">
-        <h3>Who we are</h3>
-        <p style="text-align:justify;line-height:2em">
 
-            Welcome to <span style="color:#591F27;font-weight:700">OOY Shop</span>, where fashion meets expression! We curate a collection of stylish and on-trend clothing to empower individuals to showcase their unique style. Our passion lies in offering a diverse range of high-quality apparel that caters to every fashion enthusiast. From casual chic to statement pieces, we believe in making fashion accessible to all. Explore our carefully selected pieces and embark on a journey of self-expression through clothing at <span style="color:#591F27;font-weight:700">OOY Shop</span>.
-        </p>
-    </div>
-</section>
 
+
+<div class="newsLetter">
+    <section id="newsLetterSection">
+        <div class="newsLetterText">
+            <h4>Sign up for newsLetters</h4>
+            <p>get updates about our latest shop and <i>special offers</i></p>
+        </div>
+        <div class="newsLetterForm">
+            <input type="text" placeholder="Enter your email">
+            <button>Sign up</button>
+        </div>
+    </section>
+</div>
 
 <div class="footer">
     <footer>

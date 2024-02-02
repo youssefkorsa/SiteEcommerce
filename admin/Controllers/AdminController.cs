@@ -2,6 +2,7 @@
 using admin.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace admin.Controllers
 {
@@ -11,10 +12,18 @@ namespace admin.Controllers
     {
 
         private readonly ServiceProduct _serviceProduct;
-
-        public AdminController()
+        private readonly ServiceCustomer _serviceCustomer;
+        private readonly ServiceCartItem _serviceCartItem;
+        private readonly ServicePurchase _servicePurchase;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public AdminController(IWebHostEnvironment webHostEnvironment)
         {
             _serviceProduct = new ServiceProduct();
+            _serviceCustomer = new ServiceCustomer();
+            _serviceCartItem = new ServiceCartItem();
+            _servicePurchase = new ServicePurchase();
+            _webHostEnvironment = webHostEnvironment;
+
         }
 
         
@@ -28,14 +37,21 @@ namespace admin.Controllers
 
         [Route("AddProduct")]
         [HttpPost]
-        public IActionResult AddProductPost()
+        public IActionResult AddProductPost(IFormFile ProductImage)
         {
+            string folder = "";
+            if (ProductImage != null)
+            {
+                folder = "ProductImages/" + Guid.NewGuid() + ProductImage.FileName;
+                string serverFolder = Path.Combine(Path.Combine(_webHostEnvironment.WebRootPath), folder);
+                ProductImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            }
             string name= Request.Form["ProductName"];
             string description= Request.Form["ProductDescription"];
             double price = Convert.ToDouble(Request.Form["ProductPrice"]);           
             string category = Request.Form["ProductCategory"];
             int quantityStock = int.Parse(Request.Form["QuantityInStock"]);
-            Product newProduct =new  Product(name, description, price, category, quantityStock);
+            Product newProduct =new  Product(name, description, price, category, quantityStock, folder);
             _serviceProduct.AddProduct(newProduct);
             return RedirectToAction("ListProducts");
         }
@@ -44,7 +60,9 @@ namespace admin.Controllers
         [HttpGet]
         public IActionResult ListProducts()
         {
-            return View();
+           var products= _serviceProduct.GetProducts();
+
+            return View(products);
         }
 
 
@@ -52,14 +70,24 @@ namespace admin.Controllers
         [HttpGet]
         public IActionResult ListCustomers()
         {
-            return View();
+            var customers = _serviceCustomer.GetCustomers();
+
+            return View(customers);
         }
 
         [Route("History")]
         [HttpGet]
         public IActionResult History()
         {
-            return View();
+            var total=new List<double>();
+            var purchases = _servicePurchase.GetPurchases();
+            foreach (var item in purchases)
+            {
+                total.Add(item.QuantityPurchase*item.Product.Price);
+
+            }
+            ViewBag.Total = total;
+            return View("History",purchases);
         }
 
     }

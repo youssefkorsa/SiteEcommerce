@@ -1,7 +1,7 @@
 ﻿<div class="container header-container">
     <section id="header">
 
-        <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
+        <a href="#"><img class="LogoShop" src="~/Images/LogoShop.png" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a class="active">Add product</a></li>
@@ -16,13 +16,18 @@
 
 <div class="UserForm">
     <section class="UserFormSectionADDPro">
-        <form method="POST" asp-controller="Admin" asp-action="AddProductPost">
+        <form enctype="multipart/form-data" method="POST" asp-controller="Admin" asp-action="AddProductPost">
             <h3>Add product:</h3>
             <input name="ProductName" type="text" placeholder="Product name">
             <input name="ProductCategory" type="text" placeholder="Product category">
             <input name="QuantityInStock" type="text" placeholder="Quantity in Stock">
-            <input name="ProductPrice" type="text" placeholder="Product price">
+            <input name="ProductPrice" type="text" placeholder="Product price">       
             <textarea class="ProductDescriptionInput" name="ProductDescription" rows="4" cols="50" placeholder="Description"></textarea>
+            <label class="inputAddImage">
+                <input  name="ProductImage" type="file">
+                 Upload Image
+            </label>
+           
             <button type="submit">Add product</button>
         </form>
     </section>
@@ -32,8 +37,8 @@
     <footer>
         <div class="row">
             <div class="column">
-                <img class="LogoShop" src="Images/LogoShopWhiteBG.png" alt="">
-                <p>Lorem ipsum dolor sit amet consectet</p>
+                <img class="LogoShop" src="~/Images/LogoShopWhiteBG.png" alt="">
+                <p>Fashion Meets Individuality!</p>
             </div>
             <div class="column ">
                 <h4>Contact</h4>
@@ -47,7 +52,6 @@
                 <a href="#">Shop</a>
                 <a href="#">About us</a>
                 <a href="#">Contact</a>
-                </ul>
             </div>
             <div class="column ">
                 <h4>Follow us</h4>

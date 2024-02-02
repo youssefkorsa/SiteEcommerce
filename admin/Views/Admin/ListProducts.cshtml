@@ -1,7 +1,9 @@
-﻿<div class="container header-container">
+﻿@model List<Product>
+
+<div class="container header-container">
     <section id="header">
 
-        <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
+        <a href="#"><img class="LogoShop" src="~/Images/LogoShop.png" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a asp-controller="Admin" asp-action="AddProduct">Add product</a></li>
@@ -19,23 +21,20 @@
             <tr>
                 <td>Quantity in stock</td>
                 <td>Image</td>
-                <td>Product</td>
+                <td>Product name</td>
                 <td>Price</td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>144</td>
-                <td><img src="ProductsImages/f1.jpg" alt=""></td>
-                <td>Men's fashion T-shirt</td>
-                <td><span class="price">49</span>$</td>
-            </tr>
-            <tr>
-                <td>144</td>
-                <td><img src="ProductsImages/f1.jpg" alt=""></td>
-                <td>Men's fashion T-shirt</td>
-                <td><span class="price">49</span>$</td>
-            </tr>
+            @foreach (Product product in Model)
+            {
+                <tr>
+                    <td>@product.QuantityStock</td>
+                    <td><img src="~/@product.ImageURL" alt=""></td>
+                    <td>@product.Name</td>
+                    <td><span class="price">@product.Price</span>$</td>
+                </tr>
+            }
         </tbody>
     </table>
 
@@ -47,8 +46,8 @@
     <footer>
         <div class="row">
             <div class="column">
-                <img class="LogoShop" src="Images/LogoShopWhiteBG.png" alt="">
-                <p>Lorem ipsum dolor sit amet consectet</p>
+                <img class="LogoShop" src="~/Images/LogoShopWhiteBG.png" alt="">
+                <p>Fashion Meets Individuality!</p>
             </div>
             <div class="column ">
                 <h4>Contact</h4>

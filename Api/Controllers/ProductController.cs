@@ -1,6 +1,7 @@
 ﻿using Api.Models;
 using Api.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,11 +12,12 @@ namespace Api.Controllers
     public class ProductController : ControllerBase
     {
         // Trouver un produit avec son Identifiant Id
+        private readonly MydataBase myDatabase;
         [Route("{id}")]
         [HttpGet]
         public Product GetProduct(int id)
-        {
-            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+        {   var myDatabase =new MydataBase();
+            ServiceProduct serviceProduct = new ServiceProduct(myDatabase);
             var productId = serviceProduct.GetProduct(id);
             return productId;
         }
@@ -24,7 +26,8 @@ namespace Api.Controllers
         [HttpGet]
         public List<Product> GetProducts()
         {
-            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            var myDatabase = new MydataBase();
+            ServiceProduct serviceProduct = new ServiceProduct(myDatabase);
             var products = serviceProduct.GetProducts();
             return products;
         }
@@ -33,7 +36,8 @@ namespace Api.Controllers
         [HttpPost]
         public Product AddProduct(Product product)
         {
-            ServiceProduct serviceProduct = new ServiceProduct(new MydataBase());
+            var myDatabase = new MydataBase();
+            ServiceProduct serviceProduct = new ServiceProduct(myDatabase);
             Product producttoAdd = serviceProduct.Addproduct(product);
             return producttoAdd;
         }

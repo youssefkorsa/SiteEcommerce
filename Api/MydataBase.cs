@@ -9,7 +9,7 @@ namespace Api
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // on va lui donner les information de connection de notre base de donne
-            optionsBuilder.UseSqlServer("server=🦁🦁🦁\\SQLEXPRESS;Database=DBEcommerce;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("server=🦁🦁🦁\\SQLEXPRESS;Database=DBEcommerce2;Trusted_Connection=True;TrustServerCertificate=True;");
         }
 
         public DbSet<Product> Products { get; set; }

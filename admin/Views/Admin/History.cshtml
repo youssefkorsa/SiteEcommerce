@@ -1,7 +1,9 @@
-﻿<div class="container header-container">
+﻿@model List<Purchase>
+@{int i=0;}
+<div class="container header-container">
     <section id="header">
 
-        <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
+        <a href="#"><img class="LogoShop" src="~/Images/LogoShop.png" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a asp-controller="Admin" asp-action="AddProduct">Add product</a></li>
@@ -21,7 +23,6 @@
     <table>
         <thead>
             <tr>
-                <td>client</td>
                 <td>Product</td>
                 <td>Price</td>
                 <td>Quantity</td>
@@ -30,14 +31,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Youssef KORSA</td>
-                <td>Men's fashion T-shirt</td>
-                <td>49$</td>
-                <td>1</td>
-                <td>49$</td>
-                <td>Saturday, 27 January 2024</td>
-            </tr>
+            @foreach (Purchase purchase in Model)
+            {
+                <tr>
+                    <td>@purchase.Product.Name </td>           
+                    <td>@purchase.Product.Price $</td>
+                    <td>@purchase.QuantityPurchase</td>
+                    <td>@ViewBag.Total[i] $</td>
+                    <td>@purchase.Date </td>
+                </tr>
+
+                i++;    
+               
+            }
+
+            
         </tbody>
     </table>
 
@@ -50,8 +58,8 @@
     <footer>
         <div class="row">
             <div class="column">
-                <img class="LogoShop" src="Images/LogoShopWhiteBG.png" alt="">
-                <p>Lorem ipsum dolor sit amet consectet</p>
+                <img class="LogoShop" src="~/Images/LogoShopWhiteBG.png" alt="">
+                <p>Fashion Meets Individuality!</p>
             </div>
             <div class="column ">
                 <h4>Contact</h4>

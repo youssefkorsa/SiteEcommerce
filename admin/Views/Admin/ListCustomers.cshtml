@@ -1,7 +1,9 @@
-﻿<div class="container header-container">
+﻿@model List<Customer>
+
+<div class="container header-container">
     <section id="header">
 
-        <a href="#"><img class="LogoShop" src="Images/LogoShop.png" alt=""></a>
+        <a href="#"><img class="LogoShop" src="~/Images/LogoShop.png" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a asp-controller="Admin" asp-action="AddProduct">Add product</a></li>
@@ -23,17 +25,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Youssef</td>
-                <td>KORSA</td>
-                <td>28 january 2024</td>
-            </tr>
+            @foreach(Customer customer in Model)
+            {
+                <tr>
+                    <td>@customer.FirstName</td>
+                    <td>@customer.LastName</td>
+                    <td>@customer.CreatedDate</td>
+                </tr>
+                
+            }
+            
 
-            <tr>
-                <td>Youssef</td>
-                <td>KORSA</td>
-                <td>28 january 2024</td>
-            </tr>
 
         </tbody>
     </table>
@@ -46,8 +48,8 @@
     <footer>
         <div class="row">
             <div class="column">
-                <img class="LogoShop" src="Images/LogoShopWhiteBG.png" alt="">
-                <p>Lorem ipsum dolor sit amet consectet</p>
+                <img class="LogoShop" src="~/Images/LogoShopWhiteBG.png" alt="">
+                <p>Fashion Meets Individuality!</p>
             </div>
             <div class="column ">
                 <h4>Contact</h4>
